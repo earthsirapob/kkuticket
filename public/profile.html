@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KKUTICKET</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.js"></script>
+    <script src="script/profile.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.css" />
+    
+    
+    <script src="script/script.js"></script> 
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+        
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top">
+        <a class="navbar-brand">KKU TICKET</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-center"
+          id="navbarNavAltMarkup"
+        >
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="index.html">หน้าหลัก</a>
+            <a class="nav-item nav-link" href="profile.html">ข้อมูลส่วนตัว</a>
+            <a id="loginBtnMenu" href="#" class="nav-item nav-link" onclick="document.querySelector('#login-wrapper').style.display ='block'">เข้าสู่ระบบ</a>
+            <a id="logoutBtn" class="nav-item nav-link hide" href="#">ออกจากระบบ</a>
+            <a id="emailNav" class="nav-item nav-link hide"></a>
+          </div>
+        </div>
+      </nav>
+      <br></br>
+      <div class="container" >
+        <div class="container profileList " >
+            <div class="jumbotron text-dark round ">
+              <div class="profile">
+                <br>
+                <h3 align="center" >ข้อมูลส่วนตัว</h3>
+                <br></br>
+                <div class="userAuthDetail container">
+                    <h5 id="acName">ชื่อผู้ใช้ : </h5>
+                    <br>
+                    <h5>ชื่อ :  </h5>
+                    <br>
+                    <h5>นามสกุล :  </h5>
+                    <br>
+                    <h5>เบอร์ติดต่อ :  </h5>
+                    <br>
+                </div>
+              </div>
+            </div>
+        </div>
+        
+        <div class="container">
+          <div class="row mb-2 round" style="background-color: rgb(238, 238, 238)">
+            <div class="col-md-6">
+              <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-0 text-dark">
+                  <h3 class="display-4">ILLEGAL</h3>
+                </strong>
+                <div class="mb-2 text-dark " id="acSeat">ลำดับที่นั่ง :</div>
+              <div class="mb-2 text-dark "id="acStatus">สถานะการจอง :</div>
+            <div class="mb-2 text-dark "id="acDate">วันที่ :</div>
+          <div class="mb-2 text-dark "id="acRound">รอบที่ :</div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="row mb-2 round" style="background-color: rgb(238, 238, 238)">
+          <div class="col-md-6">
+            <div class="card-body d-flex flex-column align-items-start">
+              <strong class="d-inline-block mb-0 text-dark">
+                <h3 class="display-4">ILLEGAL</h3>
+              </strong>
+              <div class="mb-2 text-dark ">ลำดับที่นั่ง :</div>
+            <div class="mb-2 text-dark ">สถานะการจอง :</div>
+          <div class="mb-2 text-dark ">วันที่ :</div>
+        <div class="mb-2 text-dark ">รอบที่ :</div>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="container">
+      <div class="row mb-2 round" style="background-color: rgb(238, 238, 238)">
+        <div class="col-md-6">
+          <div class="card-body d-flex flex-column align-items-start">
+            <strong class="d-inline-block mb-0 text-dark">
+              <h3 class="display-4">ILLEGAL</h3>
+            </strong>
+            <div class="mb-2 text-dark ">ลำดับที่นั่ง :</div>
+          <div class="mb-2 text-dark ">สถานะการจอง :</div>
+        <div class="mb-2 text-dark ">วันที่ :</div>
+      <div class="mb-2 text-dark ">รอบที่ :</div>
+    </div>
+    </div>
+  </div>
+</div>
+<div id="login-wrapper" class="login">
+  <form class="login-content animate">
+      <div class="login-container">
+          <span onclick="document.getElementById('login-wrapper').style.display='none'" class="close" title="Close">&times;</span>
+          <h1 style="text-align: center; margin: 40px;">User Login</h1>
+          <input class="emailLogin" type="text" placeholder="Email">
+          <input class="passwordLogin" type="password" placeholder="Password">
+          <button id="loginBtn" type="button" id="loginBtn" type="submit">Login</button>
+          <button id="facebookBtn" type="button" id="facebookBtn">Login with Facebook</button>
+          <button id="googleBtn" type="button" id="googleBtn">Login with Google</button>
+          <button id="regBtn" type="button" id="regBtn" onclick="document.querySelector('#reg-wrapper').style.display='block'">Register</button>
+      </div>
+  </form>
+</div>
+
+<div id="reg-wrapper" class="reg">
+  <form class="reg-content animate">
+      <div class="reg-container">
+          <span onclick="document.getElementById('reg-wrapper').style.display='none'" class="close" title="Close">&times;</span>
+          <h1 id="reg-head">Create an account</h1>
+          <div class="info">
+              <input class="inputInfo fname" placeholder="First Name">
+              <input class="inputInfo lname" placeholder="Last Name">
+              <input class="email inputInfo" placeholder="Email">
+              <input type="password" class="password inputInfo" placeholder="Password">
+              <input type="password" class="confirmPass inputInfo" placeholder="Confirm Password">
+              <input class="phone inputInfo" placeholder="Phone Number">
+          </div>
+          <div class="under">
+              <button id="regFormBtn" class="regBtn">Register</button>
+          </div>
+      </div>
+  </form>
+</div>
+  </body>
+  <script>
+
+        var regPage = document.getElementById('reg-wrapper');
+        var login = document.getElementById('login-wrapper');
+        window.onclick = function(e) {
+          if(e.target == login) {
+              login.style.display = 'none';
+          }
+        }
+
+          // -- REGISTER AND PUSH SECTION -- //
+        // Declare variable
+        var regBtn = document.getElementById('regBtn'); // reg button main page
+        var regFormBtn = document.getElementById('regFormBtn'); // reg button form
+
+        var fname = document.querySelector('.fname');
+        var lname = document.querySelector('.lname');
+        var email = document.querySelector('.email');
+        var password = document.querySelector('.password');
+        var confirmPass = document.querySelector('.confirmPass');
+        var phone = document.querySelector('.phone');
+
+        // register function
+        function saveRegData() {
+            var firstname = document.querySelector('.fname');
+            var lastname = document.querySelector('.lname');
+            var email = document.querySelector('.email');
+            var password = document.querySelector('.password');
+            var confirmPassword = document.querySelector('.confirmPass');
+            var phoneNumber = document.querySelector('.phone');
+            insertRegData(fname.value, lname.value, email.value, password.value,
+            confirmPass.value, phone.value);
+        }
+
+        // insert Register Infomation to database
+        function insertRegData(fname, lname, email, password, confirmPass, phone) {
+        var regInfo = firebase.database().ref("USER");
+        regInfo.push({
+            firstname: fname,
+            lastname: lname,
+            email: email,
+            password: password,
+            confirmPassword: confirmPass,
+            phoneNumber: phone
+        });
+        console.log("Insert Success");
+        signUp();
+        }
+
+        // addEventlistener to register button
+        regFormBtn.addEventListener('click', saveRegData);
+
+        // function signUp to authen on firebase
+        function signUp() {
+        var email = document.querySelector('.email').value;
+        var password = document.querySelector('.password').value;
+        firebase.auth().createUserWithEmailAndPassword(email,password).catch(function (error) {
+            var errorCode = error.code;
+            var errorMsg = error.message;
+            if (errorCode === 'auth/waek-password') {
+                alert('The password is too weak');
+            } else {
+                alert(errorMsg);
+            }
+            console.log(error);
+        });
+        regPage.style.display = 'none';
+        }
+
+        function signIn() {
+            var emailLogin = document.querySelector('.emailLogin').value;
+            console.log(emailLogin);
+            var password = document.querySelector('.passwordLogin').value;
+            firebase.auth().signInWithEmailAndPassword(emailLogin, password).catch(function(error) {
+                var errorCode = error.code;
+                var errorMsg = error.message;
+                if (errorCode === 'auth/wrong-password') {
+                    alert('รหัสผ่านไม่ถูกต้อง');
+                } else {
+                    alert(errorMsg);
+                }
+                console.log(error);
+            });
+            alert("Login Successfully!!");
+        }
+
+        var signInBtn = document.querySelector('#loginBtn');
+        signInBtn.addEventListener('click', signIn);
+
+        function loginGoogle() {
+            // -- Google login authentication -- // *******
+            var providerGoogle = new firebase.auth.GoogleAuthProvider();
+
+            // To sign in with a pop-up window, cal
+            firebase.auth().signInWithPopup(providerGoogle).then(function(result) {
+                console.log(result);
+                console.log("Login Successfully");
+            }).catch(function(error) {
+                console.log(error);
+                console.log("Failed");
+            });
+
+            // firebase.auth().signOut().then(function() {
+            //     // Sign-out successful.
+            // }).catch(function(error) {
+            //     // An error happened.
+            // });
+        }
+        
+        // Declare google login button and add event onclick to button with loginGoogle function
+        var googleLogin = document.getElementById('googleBtn');
+        googleLogin.addEventListener('click', loginGoogle);
+        
+        // FACEBOOK AUTHENTICATION //
+        function loginFacebook() {
+            var providerFacebook = new firebase.auth.FacebookAuthProvider();
+
+            firebase.auth().signInWithPopup(providerFacebook).then(function(result) {
+                console.log(result);
+                console.log("Login Successfully");
+
+            }).catch(function(error){
+                console.log(error);
+                console.log("Failed");
+            });
+
+        }
+
+        var facebookLogin = document.getElementById('facebookBtn');
+        facebookLogin.addEventListener('click', loginFacebook);
+
+        // AUTHEN ON WEB UPDATE STATE USER & GET USER DATA
+        // 1. Declare variable in html
+        var emailUser;
+        var loginForm = document.querySelector('.login');
+        var loginBtn = document.getElementById('loginBtnMenu');
+        var logoutBtn = document.getElementById('logoutBtn');
+        var emailNav = document.getElementById('emailNav');
+
+        // 2. FIREBASE FUNCTION onAuthStateChanged() to update current state
+        firebase.auth().onAuthStateChanged(firebaseUser => {
+            if(firebaseUser) {
+                console.log(firebaseUser);
+                loginForm.style.display = 'none';
+                loginBtn.classList.add('hide');
+                logoutBtn.classList.remove('hide');
+                emailNav.classList.remove('hide');
+                console.log("logged in");
+                console.log(firebaseUser.email);
+                console.log(firebaseUser.uid);
+                emailNav.innerHTML = firebaseUser.email;
+                console.log(firebaseUser.displayName);
+
+            } else {
+                loginBtn.classList.remove('hide');
+                logoutBtn.classList.add('hide');
+                emailNav.classList.add('hide');
+                console.log('not logged in');
+            }
+        });
+
+        logoutBtn.addEventListener('click', e => {
+            firebase.auth().signOut();
+            alert("Log out Successfully!!");
+        });
+
+        // -- END OF SECTION -- //
+        var database = firebase.database(); 
+
+var getUser="";
+var getselectedMovie="";
+var getselectedSeat="";
+var getselectedRound="";
+var getshowDate="";
+var getstatus="";
+
+var userAuth= "Chalermchai Viriyamanatham";
+
+$(document).ready(function() {
+    getUserData();
+    
+})
+
+function getUserData() {
+    var movieDatabase = ['CONTROLLER','ILLEGAL','วิปลาส'];
+    
+  //1/1/1
+      firebase.database().ref(movieDatabase[0]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("01-02-2019").child('firstRound').val();
+          var eachRoundLen = snapshot.child("01-02-2019").child('firstRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+             
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser);
+                  }
+                      
+              } 
+      });
+  //1/1/2
+      firebase.database().ref(movieDatabase[0]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("01-02-2019").child('secoundRound').val();
+          var eachRoundLen = snapshot.child("01-02-2019").child('secoundRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser,getselectedRound);
+                  }
+                      
+              } 
+      });
+  //1/2/1     
+      firebase.database().ref(movieDatabase[0]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("02-02-2019").child('firstRound').val();
+          var eachRoundLen = snapshot.child("02-02-2019").child('firstRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+             
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser);
+                  }
+                      
+              } 
+      });
+  //1/2/2
+      firebase.database().ref(movieDatabase[0]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("02-02-2019").child('secoundRound').val();
+          var eachRoundLen = snapshot.child("02-02-2019").child('secoundRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser,getselectedRound);
+                  }
+                      
+              } 
+      });
+      //1/3/1     
+      firebase.database().ref(movieDatabase[0]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("03-02-2019").child('firstRound').val();
+          var eachRoundLen = snapshot.child("03-02-2019").child('firstRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+             
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser);
+                  }
+                      
+              } 
+      });
+  //1/3/2
+      firebase.database().ref(movieDatabase[0]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("03-02-2019").child('secoundRound').val();
+          var eachRoundLen = snapshot.child("03-02-2019").child('secoundRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser,getselectedRound);
+                  }
+                      
+              } 
+      });
+      //1/4/1     
+      firebase.database().ref(movieDatabase[0]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("04-02-2019").child('firstRound').val();
+          var eachRoundLen = snapshot.child("04-02-2019").child('firstRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+             
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser);
+                  }
+                      
+              } 
+      });
+  //1/4/2
+      firebase.database().ref(movieDatabase[0]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("04-02-2019").child('secoundRound').val();
+          var eachRoundLen = snapshot.child("04-02-2019").child('secoundRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser,getselectedRound);
+                  }
+                      
+              } 
+      });    
+      
+      
+      //////
+      firebase.database().ref(movieDatabase[1]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("01-02-2019").child('firstRound').val();
+          var eachRoundLen = snapshot.child("01-02-2019").child('firstRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+             
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser);
+                  }
+                      
+              } 
+      });
+  //2/1/2
+      firebase.database().ref(movieDatabase[1]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("01-02-2019").child('secoundRound').val();
+          var eachRoundLen = snapshot.child("01-02-2019").child('secoundRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser,getselectedRound);
+                  }
+                      
+              } 
+      });
+  //2/2/1     
+      firebase.database().ref(movieDatabase[1]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("02-02-2019").child('firstRound').val();
+          var eachRoundLen = snapshot.child("02-02-2019").child('firstRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+             
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser);
+                  }
+                      
+              } 
+      });
+  //2/2/2
+      firebase.database().ref(movieDatabase[1]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("02-02-2019").child('secoundRound').val();
+          var eachRoundLen = snapshot.child("02-02-2019").child('secoundRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser,getselectedRound);
+                  }
+                      
+              } 
+      });
+      //2/3/1     
+      firebase.database().ref(movieDatabase[1]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("03-02-2019").child('firstRound').val();
+          var eachRoundLen = snapshot.child("03-02-2019").child('firstRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+             
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser);
+                  }
+                      
+              } 
+      });
+  //2/3/2
+      firebase.database().ref(movieDatabase[1]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("03-02-2019").child('secoundRound').val();
+          var eachRoundLen = snapshot.child("03-02-2019").child('secoundRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser,getselectedRound);
+                  }
+                      
+              } 
+      });
+      //2/4/1     
+      firebase.database().ref(movieDatabase[1]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("04-02-2019").child('firstRound').val();
+          var eachRoundLen = snapshot.child("04-02-2019").child('firstRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+             
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser);
+                  }
+                      
+              } 
+      });
+  //2/4/2
+      firebase.database().ref(movieDatabase[1]).once("value").then(function(snapshot) {
+          var eachMovie = snapshot.child("04-02-2019").child('secoundRound').val();
+          var eachRoundLen = snapshot.child("04-02-2019").child('secoundRound').numChildren()
+          var keys = Object.keys(eachMovie);
+          for(var j=0 ; j <eachRoundLen ;j++) {
+                  var k = keys[j];
+                  getUser = eachMovie[k].user;
+                  if(userAuth == getUser){
+                      getselectedMovie = eachMovie[k].selectedMovie;
+                      getselectedSeat = eachMovie[k].selectedSeat;
+                      getselectedRound = eachMovie[k].selectedRound;
+                      getshowDate = eachMovie[k].showDate;
+                      getstatus = eachMovie[k].status;
+                      acSet(getselectedSeat,getstatus,getUser,getselectedRound);
+                  }
+                      
+              } 
+      });   
+   
+   //////
+
+   firebase.database().ref(movieDatabase[2]).once("value").then(function(snapshot) {
+      var eachMovie = snapshot.child("01-02-2019").child('firstRound').val();
+      var eachRoundLen = snapshot.child("01-02-2019").child('firstRound').numChildren()
+      var keys = Object.keys(eachMovie);
+      for(var j=0 ; j <eachRoundLen ;j++) {
+         
+              var k = keys[j];
+              getUser = eachMovie[k].user;
+              if(userAuth == getUser){
+                  getselectedMovie = eachMovie[k].selectedMovie;
+                  getselectedSeat = eachMovie[k].selectedSeat;
+                  getselectedRound = eachMovie[k].selectedRound;
+                  getshowDate = eachMovie[k].showDate;
+                  getstatus = eachMovie[k].status;
+                  acSet(getselectedSeat,getstatus,getUser,getselectedRound,getshowDate);
+              }
+                  
+          } 
+  });
+//1/1/2
+  firebase.database().ref(movieDatabase[2]).once("value").then(function(snapshot) {
+      var eachMovie = snapshot.child("01-02-2019").child('secoundRound').val();
+      var eachRoundLen = snapshot.child("01-02-2019").child('secoundRound').numChildren()
+      var keys = Object.keys(eachMovie);
+      for(var j=0 ; j <eachRoundLen ;j++) {
+              var k = keys[j];
+              getUser = eachMovie[k].user;
+              if(userAuth == getUser){
+                  getselectedMovie = eachMovie[k].selectedMovie;
+                  getselectedSeat = eachMovie[k].selectedSeat;
+                  getselectedRound = eachMovie[k].selectedRound;
+                  getshowDate = eachMovie[k].showDate;
+                  getstatus = eachMovie[k].status;
+                  acSet(getselectedSeat,getstatus,getUser,getselectedRound);
+              }
+                  
+          } 
+  });
+//1/2/1     
+  firebase.database().ref(movieDatabase[2]).once("value").then(function(snapshot) {
+      var eachMovie = snapshot.child("02-02-2019").child('firstRound').val();
+      var eachRoundLen = snapshot.child("02-02-2019").child('firstRound').numChildren()
+      var keys = Object.keys(eachMovie);
+      for(var j=0 ; j <eachRoundLen ;j++) {
+         
+              var k = keys[j];
+              getUser = eachMovie[k].user;
+              if(userAuth == getUser){
+                  getselectedMovie = eachMovie[k].selectedMovie;
+                  getselectedSeat = eachMovie[k].selectedSeat;
+                  getselectedRound = eachMovie[k].selectedRound;
+                  getshowDate = eachMovie[k].showDate;
+                  getstatus = eachMovie[k].status;
+                  acSet(getselectedSeat,getstatus,getUser);
+              }
+                  
+          } 
+  });
+//1/2/2
+  firebase.database().ref(movieDatabase[2]).once("value").then(function(snapshot) {
+      var eachMovie = snapshot.child("02-02-2019").child('secoundRound').val();
+      var eachRoundLen = snapshot.child("02-02-2019").child('secoundRound').numChildren()
+      var keys = Object.keys(eachMovie);
+      for(var j=0 ; j <eachRoundLen ;j++) {
+              var k = keys[j];
+              getUser = eachMovie[k].user;
+              if(userAuth == getUser){
+                  getselectedMovie = eachMovie[k].selectedMovie;
+                  getselectedSeat = eachMovie[k].selectedSeat;
+                  getselectedRound = eachMovie[k].selectedRound;
+                  getshowDate = eachMovie[k].showDate;
+                  getstatus = eachMovie[k].status;
+                  acSet(getselectedSeat,getstatus,getUser,getselectedRound);
+              }
+                  
+          } 
+  });
+  //1/3/1     
+  firebase.database().ref(movieDatabase[2]).once("value").then(function(snapshot) {
+      var eachMovie = snapshot.child("03-02-2019").child('firstRound').val();
+      var eachRoundLen = snapshot.child("03-02-2019").child('firstRound').numChildren()
+      var keys = Object.keys(eachMovie);
+      for(var j=0 ; j <eachRoundLen ;j++) {
+         
+              var k = keys[j];
+              getUser = eachMovie[k].user;
+              if(userAuth == getUser){
+                  getselectedMovie = eachMovie[k].selectedMovie;
+                  getselectedSeat = eachMovie[k].selectedSeat;
+                  getselectedRound = eachMovie[k].selectedRound;
+                  getshowDate = eachMovie[k].showDate;
+                  getstatus = eachMovie[k].status;
+                  acSet(getselectedSeat,getstatus,getUser);
+              }
+                  
+          } 
+  });
+//1/3/2
+  firebase.database().ref(movieDatabase[2]).once("value").then(function(snapshot) {
+      var eachMovie = snapshot.child("03-02-2019").child('secoundRound').val();
+      var eachRoundLen = snapshot.child("03-02-2019").child('secoundRound').numChildren()
+      var keys = Object.keys(eachMovie);
+      for(var j=0 ; j <eachRoundLen ;j++) {
+              var k = keys[j];
+              getUser = eachMovie[k].user;
+              if(userAuth == getUser){
+                  getselectedMovie = eachMovie[k].selectedMovie;
+                  getselectedSeat = eachMovie[k].selectedSeat;
+                  getselectedRound = eachMovie[k].selectedRound;
+                  getshowDate = eachMovie[k].showDate;
+                  getstatus = eachMovie[k].status;
+                  acSet(getselectedSeat,getstatus,getUser,getselectedRound);
+              }
+                  
+          } 
+  });
+  //1/4/1     
+  firebase.database().ref(movieDatabase[2]).once("value").then(function(snapshot) {
+      var eachMovie = snapshot.child("04-02-2019").child('firstRound').val();
+      var eachRoundLen = snapshot.child("04-02-2019").child('firstRound').numChildren()
+      var keys = Object.keys(eachMovie);
+      for(var j=0 ; j <eachRoundLen ;j++) {
+         
+              var k = keys[j];
+              getUser = eachMovie[k].user;
+              if(userAuth == getUser){
+                  getselectedMovie = eachMovie[k].selectedMovie;
+                  getselectedSeat = eachMovie[k].selectedSeat;
+                  getselectedRound = eachMovie[k].selectedRound;
+                  getshowDate = eachMovie[k].showDate;
+                  getstatus = eachMovie[k].status;
+                  acSet(getselectedSeat,getstatus,getUser);
+              }
+                  
+          } 
+  });
+//1/4/2
+  firebase.database().ref(movieDatabase[2]).once("value").then(function(snapshot) {
+      var eachMovie = snapshot.child("04-02-2019").child('secoundRound').val();
+      var eachRoundLen = snapshot.child("04-02-2019").child('secoundRound').numChildren()
+      var keys = Object.keys(eachMovie);
+      for(var j=0 ; j <eachRoundLen ;j++) {
+              var k = keys[j];
+              getUser = eachMovie[k].user;
+              if(userAuth == getUser){
+                  getselectedMovie = eachMovie[k].selectedMovie;
+                  getselectedSeat = eachMovie[k].selectedSeat;
+                  getselectedRound = eachMovie[k].selectedRound;
+                  getshowDate = eachMovie[k].showDate;
+                  getstatus = eachMovie[k].status;
+                  acset(getselectedSeat,getstatus,getUser,getselectedRound);
+              }
+                  
+          } 
+  });     
+}
+
+        function acSet(getselectedSeat,getstatus,getUser,getselectedRound) {
+          $(acName).html("ชื่อผู้ใช้ : " + getUser);
+          $(acSeat).html("ลำดับที่นั่ง : " + getselectedSeat);
+          $(acStatus).html("สถานะการจอง : " + getstatus);
+          $(acDate).html("วันที่ : " + getshowDate);
+          $(acRound).html("รอบที่ : " + getselectedRound);
+        }
+  </script>
+</html>

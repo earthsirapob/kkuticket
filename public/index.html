@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KKUTICKET</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.css" />
+    
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="script/script.js"></script> 
+  </head>
+
+  
+  <body>
+
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top">
+        <a class="navbar-brand">KKU TICKET</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-center"
+          id="navbarNavAltMarkup"
+        >
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="index.html">หน้าหลัก</a>
+            <a class="nav-item nav-link" href="profile.html">ข้อมูลส่วนตัว</a>
+            <a id="loginBtnMenu" href="#" class="nav-item nav-link" onclick="document.querySelector('#login-wrapper').style.display ='block'">เข้าสู่ระบบ</a>
+            <a id="logoutBtn" class="nav-item nav-link hide" href="#">ออกจากระบบ</a>
+            <a id="emailNav" class="nav-item nav-link hide"></a>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="box">
+            <div class="container">
+                <div id="carouselSlide" class="carousel slide" data-ride="carousel" data-interval="2000">
+                    <div class="carousel-inner" >
+                        <div class="carousel-item active">
+                            <img class="imgContent pointer" id="วิปลาส" data-toggle="collapse" href="#collapseStage"  src="img/viplas.png" class="img-fluid" alt="Responsive image First slide" style="max-width: 90%; ">
+                            <p class="default">คณะมนุษย์ศาสตร์และสังคมศาสตร์</p>
+                        </div>
+                  
+                        <div class="carousel-item">
+                            <img class="imgContent pointer" id="ILLEGAL" data-toggle="collapse" href="#collapseStage"  src="img/illegal.png"class="img-fluid" alt="Responsive Second slide" style="max-width: 90%;">
+                            <p class="default">คณะวิศวกรรมศาสตร์</p>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="imgContent pointer" id="CONTROLLER" data-toggle="collapse" href="#collapseStage"  src="img/controller.png"class="img-fluid" alt="Responsive Third slide" style="max-width: 90%;">
+                            <p class="default">คณะบริหารธุรกิจและการบัญชี</p>
+                        </div>
+                         
+                        <a class="carousel-control-prev" href="#carouselSlide" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span></a>
+                        <a class="carousel-control-next" href="#carouselSlide" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span></a>
+                        <br></br>
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselSlide" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselSlide" data-slide-to="1"></li>
+                            <li data-target="#carouselSlide" data-slide-to="2"></li>
+                        </ol>
+                    </div>
+                </div>     
+            </div>
+       </div>
+       
+        <div class="collapse" id="collapseStage">
+            <div class="">
+                <div class="show">
+                    <h2 id="movieName" class="default"></h2>
+                        <div class="container stageHeader" align="center" style="max-width: 35rem">
+                            <div class="form-group">
+                                <label for="sel1">วันที่แสดง:</label>
+                                <select class="form-control" id="show_day">
+                                    <option value="01-02-2019">01-02-2019</option>
+                                    <option value="02-02-2019">02-02-2019</option>
+                                    <option value="03-02-2019">03-02-2019</option>
+                                    <option value="04-02-2019">04-02-2019</option>
+                                </select>
+                                <br>
+                                <label for="sel1">รอบฉาย:</label>
+                                <select class="form-control" id="show_time">
+                                        <option value="firstRound">16.00 น.-19.30 น.</option>
+                                        <option value="secoundRound">20.00 น.-23.30 น.</option>
+                                    </select>
+                            </div>
+                                
+                                <button type="button" class="btn btn-success" id="showDetail">แสดงข้อมูล</button>
+                            <br>    
+                            <table>
+                                <br>
+                                <thead>
+                                    <tr>
+                                        <th>สถานะที่นั่ง :</th>
+                                        <th id="emptyColor"></th>
+                                        <th>ว่าง</th>
+                                        <th id="waitingColor"></th>
+                                        <th>รอการยืนยัน</th>
+                                        <th id="confirmColor"></th>
+                                        <th>จองแล้ว</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <br>
+                            <p id="stage" class="default">STAGE</p>
+                        </div>                   
+                            <div class="table-responsive-xl" >
+                            <table class="table borderless pointer " id="mainTable" align="center">
+                                <thead>
+                                    <tr style = "border:none">
+                                        <th scope="col" style="border:none"> </th>
+                                        <th scope="col" style="border:none">1</th>
+                                        <th scope="col" style="border:none">2</th>
+                                        <th scope="col" style="border:none">3</th>
+                                        <th scope="col" style="border:none">4</th>
+                                        <th scope="col" style="border:none">5</th>
+                                        <th scope="col" style="border:none">6</th>
+                                        <th scope="col" style="border:none">7</th>
+                                        <th scope="col" style="border:none">8</th>
+                                        <th scope="col" style="border:none">9</th>
+                                        <th scope="col" style="border:none">10</th>
+                                        <th scope="col" style="border:none"> </th>
+                                        <th scope="col" style="border:none">11</th>
+                                        <th scope="col" style="border:none">12</th>
+                                        <th scope="col" style="border:none">13</th>
+                                        <th scope="col" style="border:none">14</th>
+                                        <th scope="col" style="border:none">15</th>
+                                        <th scope="col" style="border:none">16</th>
+                                        <th scope="col" style="border:none">17</th>
+                                        <th scope="col" style="border:none">18</th>
+                                        <th scope="col" style="border:none">19</th>
+                                        <th scope="col" style="border:none">20</th>
+                                        <th scope="col" style="border:none"> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th >A</th>
+                                        <td id="A1"></td>
+                                        <td id="A2"></td>
+                                        <td id="A3"></td>
+                                        <td id="A4"></td>
+                                        <td id="A5"></td>
+                                        <td id="A6"></td>
+                                        <td id="A7"></td>
+                                        <td id="A8"></td>
+                                        <td id="A9"></td>
+                                        <td id="A10"></td>
+                                        <td></td>
+                                        <td id="A11"></td>
+                                        <td id="A12"></td>
+                                        <td id="A13"></td>
+                                        <td id="A14"></td>
+                                        <td id="A15"></td>
+                                        <td id="A16"></td>
+                                        <td id="A17"></td>
+                                        <td id="A18"></td>
+                                        <td id="A19"></td>
+                                        <td id="A20"></td>
+                                    </tr>
+                                    <tr>
+                                        <th >B</th>
+                                        <td id="B1"></td>
+                                        <td id="B2"></td>
+                                        <td id="B3"></td>
+                                        <td id="B4"></td>
+                                        <td id="B5"></td>
+                                        <td id="B6"></td>
+                                        <td id="B7"></td>
+                                        <td id="B8"></td>
+                                        <td id="B9"></td>
+                                        <td id="B10"></td>
+                                        <td></td>
+                                        <td id="B11"></td>
+                                        <td id="B12"></td>
+                                        <td id="B13"></td>
+                                        <td id="B14"></td>
+                                        <td id="B15"></td>
+                                        <td id="B16"></td>
+                                        <td id="B17"></td>
+                                        <td id="B18"></td>
+                                        <td id="B19"></td>
+                                        <td id="B20"></td>
+                                    </tr>
+                                    <tr>
+                                        <th >C</th>
+                                        <td id="C1"></td>
+                                        <td id="C2"></td>
+                                        <td id="C3"></td>
+                                        <td id="C4"></td>
+                                        <td id="C5"></td>
+                                        <td id="C6"></td>
+                                        <td id="C7"></td>
+                                        <td id="C8"></td>
+                                        <td id="C9"></td>
+                                        <td id="C10"></td>
+                                        <td></td>
+                                        <td id="C11"></td>
+                                        <td id="C12"></td>
+                                        <td id="C13"></td>
+                                        <td id="C14"></td>
+                                        <td id="C15"></td>
+                                        <td id="C16"></td>
+                                        <td id="C17"></td>
+                                        <td id="C18"></td>
+                                        <td id="C19"></td>
+                                        <td id="C20"></td>
+                                    </tr>
+                                    <tr>
+                                        <th >D</th>
+                                        <td id="D1"></td>
+                                        <td id="D2"></td>
+                                        <td id="D3"></td>
+                                        <td id="D4"></td>
+                                        <td id="D5"></td>
+                                        <td id="D6"></td>
+                                        <td id="D7"></td>
+                                        <td id="D8"></td>
+                                        <td id="D9"></td>
+                                        <td id="D10"></td>
+                                        <td></td>
+                                        <td id="D11"></td>
+                                        <td id="D12"></td>
+                                        <td id="D13"></td>
+                                        <td id="D14"></td>
+                                        <td id="D15"></td>
+                                        <td id="D16"></td>
+                                        <td id="D17"></td>
+                                        <td id="D18"></td>
+                                        <td id="D19"></td>
+                                        <td id="D20"></td>
+                                    </tr>
+                                    <tr>
+                                        <th >E</th>
+                                        <td id="E1"></td>
+                                        <td id="E2"></td>
+                                        <td id="E3"></td>
+                                        <td id="E4"></td>
+                                        <td id="E5"></td>
+                                        <td id="E6"></td>
+                                        <td id="E7"></td>
+                                        <td id="E8"></td>
+                                        <td id="E9"></td>
+                                        <td id="E10"></td>
+                                        <td></td>
+                                        <td id="E11"></td>
+                                        <td id="E12"></td>
+                                        <td id="E13"></td>
+                                        <td id="E14"></td>
+                                        <td id="E15"></td>
+                                        <td id="E16"></td>
+                                        <td id="E17"></td>
+                                        <td id="E18"></td>
+                                        <td id="E19"></td>
+                                        <td id="E20"></td>
+                                    </tr>
+                                    <tr>
+                                        <th >F</th>
+                                        <td id="F1"></td>
+                                        <td id="F2"></td>
+                                        <td id="F3"></td>
+                                        <td id="F4"></td>
+                                        <td id="F5"></td>
+                                        <td id="F6"></td>
+                                        <td id="F7"></td>
+                                        <td id="F8"></td>
+                                        <td id="F9"></td>
+                                        <td id="F10"></td>
+                                        <td></td>
+                                        <td id="F11"></td>
+                                        <td id="F12"></td>
+                                        <td id="F13"></td>
+                                        <td id="F14"></td>
+                                        <td id="F15"></td>
+                                        <td id="F16"></td>
+                                        <td id="F17"></td>
+                                        <td id="F18"></td>
+                                        <td id="F19"></td>
+                                        <td id="F20"></td>
+                                    </tr>
+                                    <tr>
+                                        <th >G</th>
+                                        <td id="G1"></td>
+                                        <td id="G2"></td>
+                                        <td id="G3"></td>
+                                        <td id="G4"></td>
+                                        <td id="G5"></td>
+                                        <td id="G6"></td>
+                                        <td id="G7"></td>
+                                        <td id="G8"></td>
+                                        <td id="G9"></td>
+                                        <td id="G10"></td>
+                                        <td></td>
+                                        <td id="G11"></td>
+                                        <td id="G12"></td>
+                                        <td id="G13"></td>
+                                        <td id="G14"></td>
+                                        <td id="G15"></td>
+                                        <td id="G16"></td>
+                                        <td id="G17"></td>
+                                        <td id="G18"></td>
+                                        <td id="G19"></td>
+                                        <td id="G20"></td>
+                                    </tr>
+                                    <tr>
+                                        <th >H</th>
+                                        <td id="H1"></td>
+                                        <td id="H2"></td>
+                                        <td id="H3"></td>
+                                        <td id="H4"></td>
+                                        <td id="H5"></td>
+                                        <td id="H6"></td>
+                                        <td id="H7"></td>
+                                        <td id="H8"></td>
+                                        <td id="H9"></td>
+                                        <td id="H10"></td>
+                                        <td></td>
+                                        <td id="H11"></td>
+                                        <td id="H12"></td>
+                                        <td id="H13"></td>
+                                        <td id="H14"></td>
+                                        <td id="H15"></td>
+                                        <td id="H16"></td>
+                                        <td id="H17"></td>
+                                        <td id="H18"></td>
+                                        <td id="H19"></td>
+                                        <td id="H20"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="login-wrapper" class="login">
+        <form class="login-content animate">
+            <div class="login-container">
+                <span onclick="document.getElementById('login-wrapper').style.display='none'" class="close" title="Close">&times;</span>
+                <h1 style="text-align: center; margin: 40px;">User Login</h1>
+                <input class="emailLogin" type="text" placeholder="Email">
+                <input class="passwordLogin" type="password" placeholder="Password">
+                <button id="loginBtn" type="button" id="loginBtn" type="submit">Login</button>
+                <button id="facebookBtn" type="button" id="facebookBtn">Login with Facebook</button>
+                <button id="googleBtn" type="button" id="googleBtn">Login with Google</button>
+                <button id="regBtn" type="button" id="regBtn" onclick="document.querySelector('#reg-wrapper').style.display='block'">Register</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="reg-wrapper" class="reg">
+        <form class="reg-content animate">
+            <div class="reg-container">
+                <span onclick="document.getElementById('reg-wrapper').style.display='none'" class="close" title="Close">&times;</span>
+                <h1 id="reg-head">Create an account</h1>
+                <div class="info">
+                    <input class="inputInfo fname" placeholder="First Name">
+                    <input class="inputInfo lname" placeholder="Last Name">
+                    <input class="email inputInfo" placeholder="Email">
+                    <input type="password" class="password inputInfo" placeholder="Password">
+                    <input type="password" class="confirmPass inputInfo" placeholder="Confirm Password">
+                    <input class="phone inputInfo" placeholder="Phone Number">
+                </div>
+                <div class="under">
+                    <button id="regFormBtn" class="regBtn">Register</button>
+                </div>
+            </div>
+        </form>
+    </div>
+  </body>
+
+  <script>
+        var regPage = document.getElementById('reg-wrapper');
+        var login = document.getElementById('login-wrapper');
+        window.onclick = function(e) {
+          if(e.target == login) {
+              login.style.display = 'none';
+          }
+        }
+
+          // -- REGISTER AND PUSH SECTION -- //
+        // Declare variable
+        var regBtn = document.getElementById('regBtn'); // reg button main page
+        var regFormBtn = document.getElementById('regFormBtn'); // reg button form
+
+        var fname = document.querySelector('.fname');
+        var lname = document.querySelector('.lname');
+        var email = document.querySelector('.email');
+        var password = document.querySelector('.password');
+        var confirmPass = document.querySelector('.confirmPass');
+        var phone = document.querySelector('.phone');
+
+        // register function
+        function saveRegData() {
+            var firstname = document.querySelector('.fname');
+            var lastname = document.querySelector('.lname');
+            var email = document.querySelector('.email');
+            var password = document.querySelector('.password');
+            var confirmPassword = document.querySelector('.confirmPass');
+            var phoneNumber = document.querySelector('.phone');
+            insertRegData(fname.value, lname.value, email.value, password.value,
+            confirmPass.value, phone.value);
+        }
+
+        // insert Register Infomation to database
+        function insertRegData(fname, lname, email, password, confirmPass, phone) {
+        var regInfo = firebase.database().ref("USER");
+        regInfo.push({
+            firstname: fname,
+            lastname: lname,
+            email: email,
+            password: password,
+            confirmPassword: confirmPass,
+            phoneNumber: phone
+        });
+        console.log("Insert Success");
+        signUp();
+        }
+
+        // addEventlistener to register button
+        regFormBtn.addEventListener('click', saveRegData);
+
+        // function signUp to authen on firebase
+        function signUp() {
+        var email = document.querySelector('.email').value;
+        var password = document.querySelector('.password').value;
+        firebase.auth().createUserWithEmailAndPassword(email,password).catch(function (error) {
+            var errorCode = error.code;
+            var errorMsg = error.message;
+            if (errorCode === 'auth/waek-password') {
+                alert('The password is too weak');
+            } else {
+                alert(errorMsg);
+            }
+            console.log(error);
+        });
+        regPage.style.display = 'none';
+        }
+
+        function signIn() {
+            var emailLogin = document.querySelector('.emailLogin').value;
+            console.log(emailLogin);
+            var password = document.querySelector('.passwordLogin').value;
+            firebase.auth().signInWithEmailAndPassword(emailLogin, password).catch(function(error) {
+                var errorCode = error.code;
+                var errorMsg = error.message;
+                if (errorCode === 'auth/wrong-password') {
+                    alert('รหัสผ่านไม่ถูกต้อง');
+                } else {
+                    alert(errorMsg);
+                }
+                console.log(error);
+            });
+            alert("Login Successfully!!");
+        }
+
+        var signInBtn = document.querySelector('#loginBtn');
+        signInBtn.addEventListener('click', signIn);
+
+        function loginGoogle() {
+            // -- Google login authentication -- // *******
+            var providerGoogle = new firebase.auth.GoogleAuthProvider();
+
+            // To sign in with a pop-up window, cal
+            firebase.auth().signInWithPopup(providerGoogle).then(function(result) {
+                console.log(result);
+                console.log("Login Successfully");
+            }).catch(function(error) {
+                console.log(error);
+                console.log("Failed");
+            });
+
+            // firebase.auth().signOut().then(function() {
+            //     // Sign-out successful.
+            // }).catch(function(error) {
+            //     // An error happened.
+            // });
+        }
+        
+        // Declare google login button and add event onclick to button with loginGoogle function
+        var googleLogin = document.getElementById('googleBtn');
+        googleLogin.addEventListener('click', loginGoogle);
+        
+        // FACEBOOK AUTHENTICATION //
+        function loginFacebook() {
+            var providerFacebook = new firebase.auth.FacebookAuthProvider();
+
+            firebase.auth().signInWithPopup(providerFacebook).then(function(result) {
+                console.log(result);
+                console.log("Login Successfully");
+
+            }).catch(function(error){
+                console.log(error);
+                console.log("Failed");
+            });
+
+        }
+
+        var facebookLogin = document.getElementById('facebookBtn');
+        facebookLogin.addEventListener('click', loginFacebook);
+
+        // AUTHEN ON WEB UPDATE STATE USER & GET USER DATA
+        // 1. Declare variable in html
+        var emailUser;
+        var loginForm = document.querySelector('.login');
+        var loginBtn = document.getElementById('loginBtnMenu');
+        var logoutBtn = document.getElementById('logoutBtn');
+        var emailNav = document.getElementById('emailNav');
+
+        // 2. FIREBASE FUNCTION onAuthStateChanged() to update current state
+        firebase.auth().onAuthStateChanged(firebaseUser => {
+            if(firebaseUser) {
+                console.log(firebaseUser);
+                loginForm.style.display = 'none';
+                loginBtn.classList.add('hide');
+                logoutBtn.classList.remove('hide');
+                emailNav.classList.remove('hide');
+                console.log("logged in");
+                console.log(firebaseUser.email);
+                console.log(firebaseUser.uid);
+                emailNav.innerHTML = firebaseUser.email;
+                console.log(firebaseUser.displayName);
+
+            } else {
+                loginBtn.classList.remove('hide');
+                logoutBtn.classList.add('hide');
+                emailNav.classList.add('hide');
+                console.log('not logged in');
+            }
+        });
+
+        logoutBtn.addEventListener('click', e => {
+            firebase.auth().signOut();
+            alert("Log out Successfully!!");
+        });
+    </script>
+</html>
